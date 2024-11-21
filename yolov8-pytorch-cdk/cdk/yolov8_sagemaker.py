@@ -55,7 +55,7 @@ class YOLOv8SageMakerStack(Stack):
         notebook = sagemaker.CfnNotebookInstance(
             self,
             nid,
-            instance_type='ml.m5.4xlarge',
+            instance_type='ml.m5.2xlarge',
             volume_size_in_gb=5,
             notebook_instance_name=nid,
             role_arn=nRole.role_arn,
