@@ -18,7 +18,7 @@ def array_to_str(im_array):
     return encoded_im.decode('utf-8')
 
 def lambda_handler(event, context):
-    ENDPOINT_NAME = 'yolov8-pytorch-2024-07-18-21-09-58-005126'            
+    ENDPOINT_NAME = 'YOLOv8-CFU-SageMaker-endpoint'            
     
     # Read the image into a numpy  array
     #orig_image = cv2.imread('test_image.jpg')
