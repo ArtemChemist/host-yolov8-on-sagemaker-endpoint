@@ -1,5 +1,6 @@
-import boto3, cv2, random, base64, json
-import numpy as np
+import boto3, random, base64, json, io
+from PIL import Image
+ENDPOINT_NAME = 'YOLOv8-CFU-SageMaker-endpoint' 
 
 def str_to_array(encoded_str):
     aux_path = '/tmp/tmp.png'
