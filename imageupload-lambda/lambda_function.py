@@ -21,7 +21,7 @@ def array_to_str(im_array):
 def lambda_handler(event, context):
     ENDPOINT_NAME = 'YOLOv8-CFU-SageMaker-endpoint'            
     
-    # Read the image into a numpy  array
+    # Read the image into a numpy array
     #orig_image = cv2.imread('test_image.jpg')
     orig_image = str_to_array(event['body'])
     
