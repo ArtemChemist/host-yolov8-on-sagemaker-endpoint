@@ -11,7 +11,7 @@ def str_to_im(encoded_str):
 def im_to_str(PIL_im):
     # Convert the image with boxes a byte stream 
     byte_arr = io.BytesIO()
-    PIL_im.save(responce_byte_arr, format='jpeg')
+    PIL_im.save(byte_arr, format='jpeg')
     return base64.b64encode(byte_arr.getvalue()).decode('utf-8')
     
     with open(aux_path, 'rb') as f:
