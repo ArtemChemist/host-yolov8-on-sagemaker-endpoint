@@ -1,3 +1,5 @@
+
+
 import boto3, random, base64, json, io
 from PIL import Image, ImageDraw, ImageFont
 
@@ -13,17 +15,11 @@ def im_to_str(PIL_im):
     byte_arr = io.BytesIO()
     PIL_im.save(byte_arr, format='jpeg')
     return base64.b64encode(byte_arr.getvalue()).decode('utf-8')
-    
-    with open(aux_path, 'rb') as f:
-        encoded_im = base64.b64encode(f.read())
-        f.close
-    return encoded_im.decode('utf-8')
 
 def lambda_handler(event, context):
     ENDPOINT_NAME = 'YOLOv8-CFU-SageMaker-endpoint'
     
-    # Read the image into a numpy array
-    # orig_image = Image.open('cfu_positive.jpg')
+    # Read the image into a PIL image
     orig_image = str_to_im(event['body'])
     
     # Calculate the parameters for image resizing
@@ -59,11 +55,11 @@ def lambda_handler(event, context):
             draw.text((x1,y1-40), f"Class: {int(lbl)}")
             draw.text((x1,y1-10), f"Conf: {int(conf*100)}")
     
-    im_to_return = array_to_str(orig_image)
+    str_to_send_back = im_to_str(orig_image)
             
     return {
         'statusCode': 200,
-        'body': im_to_return,
+        'body': str_to_send_back,
         'isBase64Encoded': True,
         'headers': {'content-type':'image/png'}
     }
